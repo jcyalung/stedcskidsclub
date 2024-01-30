@@ -1,3 +1,4 @@
+
 """
  Program is developed by Joshua Yalung and Isaac Cruz.
 This program generates a sign-out document for
@@ -12,6 +13,11 @@ This program generates a sign-out document for
 
  @see https://api-docs.procareconnect.com/#intro
 """
+"""
+This will be for importing the data from Procare's api.
+"""
+# import _____
+
 
 # import docx
 from docx import Document
