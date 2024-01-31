@@ -37,19 +37,18 @@ function App() {
             // otherwise, save studentID and send to backend
             onKeyUp={(e) => {
               if (e.key === 'Enter') {
+                console.log('Enter key pressed');
                 if(studentID.length !== 6) {
                   console.log('Please enter a valid Student ID');
                 }
                 else {
-                  console.log('Enter key pressed');
                   console.log('Student ID = ' + studentID);
-                  setStudentID(e.target.value);
                 }
               }
             }}
         />
         <div className="Student">
-          <Student studentID = {studentID} />
+          <Student studentID={studentID} />
         </div>
       </header>
     </div>
