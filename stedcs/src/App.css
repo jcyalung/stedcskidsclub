@@ -21,7 +21,20 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  font-family: 'Times New Roman', Times, serif;
   color: white;
+}
+
+input {
+  border: none;
+  font-size: 3rem;
+  font-family: var(--font-raleway);
+  font-weight: 500;
+  padding-right: 1rem;
+
+  outline: none;
+  color: #a1a1a1;
+  background: #1f2123;
 }
 
 .App-link {
