@@ -8,10 +8,10 @@ This program generates a sign-out document for
 
  In order for us to test sign-ins/sign-outs with the student database,
  we will need to utilize and access Procare's api.
+ 
+ procare has no api, so we'll have to find another workaround
 
 
-
- @see https://api-docs.procareconnect.com/#intro
 """
 """
 This will be for importing the data from Procare's api.
@@ -117,3 +117,16 @@ for student_name in records:
 
 # save document into folder
 document.save('test.docx')
+
+
+
+
+
+
+
+
+
+
+
+
+
