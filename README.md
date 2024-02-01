@@ -10,5 +10,6 @@ We will also use React.JS to create a frontend for the program.
 - To install uvicorn, run the command `pip install uvicorn`.
 - To install FastAPI, run the command `pip install fastapi`.
 - To install python-docx, run the command `pip install python-docx`.
+- To install requests, run the command `pip install requests`.
 
 If you do not have pip, install or upgrade [python](https://www.python.org/downloads/) to the latest version.
