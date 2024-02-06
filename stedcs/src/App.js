@@ -1,10 +1,21 @@
-import React, { Component } from 'react';
-import { useEffect, useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
 import Student from './Student';
 import './App.css';
 const curr_day = new Date();
+
+
 function App() {
-  const [studentID, setStudentID] = useState('');
+  const [response, setResponse] = useState({})
+  const [studentName, setStudentName] = useState('');
+  const BASE_URL = 'http://localhost:8000/student/';
+
+  const find_student = async (student) => {
+    const response = await fetch(BASE_URL + student);
+    const data = await response.json();
+    setResponse(data);
+  }
+  
   // return value for react
   return (
     <div className="App">
@@ -17,39 +28,44 @@ function App() {
 
 
         {/* input for the student ID */}
-        <input 
-            // values to display
-            placeholder='Enter your Student ID'
-            value={ studentID }
-            
-            // update the student ID on number press
-            onChange={(e) => {
-              const re = /^[0-9\b]+$/;
-              if((e.target.value === '' || re.test(e.target.value)) && e.target.value.length <= 6) {
-                setStudentID(e.target.value);
-              }
-              else {
-                console.log('Please enter a valid Student ID');
-              }
+        <div className='search'>
+          <input 
+              // values to display
+              placeholder='Enter your Student ID'
+              value={ studentName }
+
+              // update the student ID on number press
+              onChange={(e) => {
+                  setStudentName(e.target.value);
+                }}
+              
+              // when enter key is pressed, check if the student ID is valid
+              // otherwise, save studentName and send to backend
+              onKeyUp={(e) => {
+                if (e.key === 'Enter') {
+                  console.log(studentName);
+                  find_student(studentName);
+                  console.log(response);
+                }
               }}
-            
-            // when enter key is pressed, check if the student ID is valid
-            // otherwise, save studentID and send to backend
-            onKeyUp={(e) => {
-              if (e.key === 'Enter') {
-                console.log('Enter key pressed');
-                if(studentID.length !== 6) {
-                  console.log('Please enter a valid Student ID');
-                }
-                else {
-                  console.log('Student ID = ' + studentID);
-                }
-              }
-            }}
-        />
-        <div className="Student">
-          <Student studentID={studentID} />
+          />
+          <button
+          onClick={() => find_student(studentName)}>
+          Send
+          </button> 
         </div>
+        
+        
+        {
+          studentName !== '' && response['name'] === 'Student found' ?
+          (
+            <Student studentName={studentName} message={response} />
+          )
+          :
+          (
+            <div className='notFound'></div>
+          )
+        }
       </header>
     </div>
   );
