@@ -6,17 +6,25 @@ const curr_day = new Date();
 
 
 function App() {
-  const [response, setResponse] = useState({})
+  const [response, setResponse] = useState({});
   const [studentName, setStudentName] = useState('');
-  const BASE_URL = 'http://localhost:8000/student/';
-
+  const BASE_URL = 'http://localhost:8000/';
+  let previous_student = '';
+  // fetch the student from the backend
   const find_student = async (student) => {
-    const response = await fetch(BASE_URL + student);
-    const data = await response.json();
+    const response_fetch = await fetch(BASE_URL + 'add-student/' + student);
+    const data = await response_fetch.json();
+    console.log(data);
     setResponse(data);
+    console.log(response);
+  }
+
+  const saveDocument = async () => {
+    const response_fetch = await fetch(BASE_URL + 'save-document');
+    const data = await response_fetch.json();
+    console.log(data['message']);
   }
   
-  // return value for react
   return (
     <div className="App">
       {/* header for the sign in */}
@@ -43,29 +51,26 @@ function App() {
               // otherwise, save studentName and send to backend
               onKeyUp={(e) => {
                 if (e.key === 'Enter') {
-                  console.log(studentName);
                   find_student(studentName);
-                  console.log(response);
+                  previous_student = studentName;
+                  console.log(previous_student);
+                  setStudentName('');
                 }
               }}
           />
+          {/* }
           <button
           onClick={() => find_student(studentName)}>
           Send
-          </button> 
+          </button> */}
         </div>
-        
-        
-        {
-          studentName !== '' && response['name'] === 'Student found' ?
-          (
-            <Student studentName={studentName} message={response} />
-          )
-          :
-          (
-            <div className='notFound'></div>
-          )
-        }
+        <Student studentName={previous_student} message={response} />
+        <div className='Document'>
+          <button
+          onClick={() => saveDocument()}>
+            Save Document
+          </button>
+        </div>
       </header>
     </div>
   );

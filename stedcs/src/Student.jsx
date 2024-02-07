@@ -1,11 +1,8 @@
 import React from 'react';
 const Student = ({studentName, message}) => {
-    console.log(message['name']);
-    if(message['name'] === 'Student not found') {
+    if(message['name'] === undefined) {
         return (
-            <div className="Student">
-                <p>Student not found. Please try again. </p>
-            </div>
+            <div className="notFound"></div>
         )
     }
     return (
