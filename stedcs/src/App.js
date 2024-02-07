@@ -9,14 +9,11 @@ function App() {
   const [response, setResponse] = useState({});
   const [studentName, setStudentName] = useState('');
   const BASE_URL = 'http://localhost:8000/';
-  let previous_student = '';
   // fetch the student from the backend
   const find_student = async (student) => {
     const response_fetch = await fetch(BASE_URL + 'add-student/' + student);
     const data = await response_fetch.json();
-    console.log(data);
     setResponse(data);
-    console.log(response);
   }
 
   const saveDocument = async () => {
@@ -52,8 +49,6 @@ function App() {
               onKeyUp={(e) => {
                 if (e.key === 'Enter') {
                   find_student(studentName);
-                  previous_student = studentName;
-                  console.log(previous_student);
                   setStudentName('');
                 }
               }}

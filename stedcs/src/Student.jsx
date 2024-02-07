@@ -1,13 +1,17 @@
 import React from 'react';
 const Student = ({message}) => {
-    if(message['name'] === undefined) {
+    if(message['message'] === 'Student not found') {
         return (
-            <div className="notFound"></div>
+            <div className="notFound">
+                <p>Student not found</p>
+            </div>
         )
     }
     return (
         <div className="Student">
-            <p>Welcome, {message['name']}! </p>
+            <p>{[message['message'] === 'Student found' ? 
+                    'Welcome, ' + message['name'] + '!' : 
+                    'Student has already signed in.']}</p>
         </div>
     )
 }
