@@ -50,7 +50,7 @@ input {
   font-weight: 500;
 }
 
-.document {
+.Document {
   display: flex;
   flex-direction: column;
   align-items: left;

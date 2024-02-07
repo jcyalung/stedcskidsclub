@@ -64,7 +64,7 @@ function App() {
           Send
           </button> */}
         </div>
-        <Student studentName={previous_student} message={response} />
+        <Student message={response} />
         <div className='Document'>
           <button
           onClick={() => saveDocument()}>

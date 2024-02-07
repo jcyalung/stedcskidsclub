@@ -13,3 +13,4 @@ We will also use React.JS to create a frontend for the program.
 
 
 If you do not have pip, install or upgrade [python](https://www.python.org/downloads/) to the latest version.
+
