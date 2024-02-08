@@ -58,7 +58,7 @@ def student(current : str = ''):
         curr = current_student[1] + " " + current_student[0]
         if curr == current:
             ct = dt.datetime.now()
-            students_today.append([current_student[0], current_student[1], ct.strftime("%I:%M %p")])
+            students_today.append([current_student[0], current_student[1], ct.strftime("%I:%M %p"), ""  ])
             return({"message": "Student found", "name":curr, "time in":ct.strftime("%I:%M %p"), "time out": ""})
             
     return({"message": "Student not found"})
@@ -66,9 +66,13 @@ def student(current : str = ''):
 @app.get("/sign-out/{student}")
 def sign_out(student : str):
     for kidsclub_student in students_today:
+        print(kidsclub_student)
         if student == kidsclub_student[1] + " " + kidsclub_student[0]:
-            kidsclub_student.append(dt.datetime.now().strftime("%I:%M %p"))
-            return({"message": "Student signed out", "name": student, "time in": kidsclub_student[2], "time out": kidsclub_student[3]})
+            if(kidsclub_student[3] != ""):
+                return({"message": "Student has already signed out", "name": student, "time in": kidsclub_student[2], "time out": kidsclub_student[3]})
+            else:
+                kidsclub_student[3] = dt.datetime.now().strftime("%I:%M %p")
+                return({"message": "Student signed out", "name": student, "time in": kidsclub_student[2], "time out": kidsclub_student[3]})
     return({"message": "Student has not signed in yet", "name": student, "time in": "", "time out": ""})
 
 # random digit generator, testing purposes

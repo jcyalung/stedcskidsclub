@@ -3,21 +3,21 @@ import { useState, useEffect } from 'react';
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import Student from './Student';
 import './App.css';
-const curr_day = new Date();
+const today = new Date();
 
 
 function App() {
-  const [response, setResponse] = useState({});
+  const [message, setMessage] = useState({});
   const [students, setStudents] = useState([{}]);
   const [documentPrinted, setDocumentPrinted] = useState(false);
   const [sheetPrinted, setSheetPrinted] = useState(false);
   const BASE_URL = 'http://localhost:8000/';
+
   // fetch the student from the backend
   const findStudent = async (student) => {
     const responseFetch = await fetch(BASE_URL + 'add-student/' + student);
     const data = await responseFetch.json();
-    setResponse(data);
-    console.log(response);
+    setMessage(data);
   }
 
   const saveDocument = async () => {
@@ -48,13 +48,12 @@ function App() {
       findStudent(student);
     }
     console.log(data);
-    setResponse(data);
+    setMessage(data);
   }
 
   useEffect(() => {getStudents()}, []);
 
   const handleOnSearch = (string, results) => {
-    console.log(documentPrinted);
     documentPrinted ? signOutStudent(string) : findStudent(string);
   };
 
@@ -65,7 +64,7 @@ function App() {
         Saint Edward Kids Club Sign In<br />
 
         {/* display the current date */}
-        {curr_day.toDateString()}
+        {today.toDateString()}
 
         {/* input for the student ID */}
           <div className='search'>
@@ -95,7 +94,7 @@ function App() {
           />
           </div>
 
-        <Student message={response} />
+        <Student message={message} />
         <div className='Document'>
           <p>Click the button to save the sign in document.</p> 
           <button
