@@ -34,6 +34,7 @@ Now, we can start running the backend. <br>
 <br> Create the folders for Logs and Sign-in Sheets using the command `python folders.py`.
 This will generate a folder named `Logs` and `signInSheets`, and these folders also have a folder for each school month. (Ex. Jan-June, August-December)
 3. Now, run the command `python server.py`.
-4. 
+4. If ran correctly, this should appear in the terminal/command prompt:
+![Alt text](image2.png)
 
    
