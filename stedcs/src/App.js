@@ -96,21 +96,28 @@ function App() {
 
         <Student message={message} />
         <div className='Document'>
-          <p>Click the button to save the sign in document.</p> 
+          <p>{ 
+            documentPrinted ? 
+            'Document has been saved!'
+            : 
+            'Click the button to save the sign in document.' 
+            } </p> 
           <button
-          onClick={saveDocument}>
+          onClick={saveDocument}
+          class='button-primary'>
             Save Document
           </button>
-          {documentPrinted ?
-          <p>Document has been printed!</p> : ''}
           <br></br>
-          <p>Click the button to save the data into a spreadsheet.</p>
+          <p>{sheetPrinted ? 
+          'Spreadsheet has been saved!'
+          : 
+          'Click the button to save the data into a spreadsheet.' 
+          }</p>
           <button
-          onClick={saveData}>
+          onClick={saveData}
+          class='button-primary'>
             Save Data
           </button>
-          {sheetPrinted ?
-          <p>Data has been saved!</p> : ''}
         </div>
       </header>
     </div>

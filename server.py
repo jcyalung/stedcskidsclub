@@ -1,10 +1,14 @@
+"""
+This file handles the backend of the prorgram.
+It is responsible for handling the API requests and
+sending the appropriate responses.
+"""
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from kidsclub import csv
 import kidsclub
 import uvicorn 
 import random
-
 import datetime as dt
 
 app = FastAPI()

@@ -5,16 +5,9 @@ This program generates a sign-out document for
  students who signed in for the day at Kids Club.
  We aim for this program to operate with other software/databases that
  Saint Edward uses at its disposal, such as Procare.
-
- In order for us to test sign-ins/sign-outs with the student database,
- we will need to utilize and access Procare's api.
  
- procare has no api, so we'll have to find another workaround
 
 
-"""
-"""
-This will be for importing the data from Procare's api.
 """
 import docx
 import csv
