@@ -6,12 +6,13 @@ It also uses `uvicorn` and `FastAPI` for backend functionality and data handling
 # Important notes
 - The students database is imported in a CSV format. Please name this file as `students.csv` and store the file in the `~/api` folder where the python files are stored.
 An example of the database is shown below.
+![Alt text](image3.png)
 - A record of each student signed in and signed out is both stored as sign in sheets as well as CSV files.
 - The sign in sheets are stored in the folder `signInSheets` under the appropriate month folder.
 - The CSV logs are stored in the folder `Logs` under the appropriate month folder.
 - If `Logs` and `signInSheets` are not created in the directory, see below on how to create them.
 
-![Alt text](image3.png)
+
 # Python set up
 For this program, we will be utilizing a third-party Python library called [python-docx](https://python-docx.readthedocs.io/en/latest/). <br>
 This library allows us to generate Microsoft Word documents from python scripts, which is the goal for this program.
