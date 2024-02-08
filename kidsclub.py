@@ -106,6 +106,23 @@ def save_document(name : str, students: list):
             num_entries = 0
             temp_row = table.add_row()
 
+    # extra cells in case students come in later
+    for i in range(0,3):
+        row = table.add_row()
+        row.height = Inches(0.25)
+        row_cells = row.cells
+
+        # insert student names into first column
+        cell1 = row_cells[0].add_paragraph()
+
+        # time cell
+        cell2 = row_cells[1].add_paragraph()
+        cell2_run = cell2.add_run(time_character)
+        cell2_run.font.size = Pt(24)
+
+        # align cells to center format
+        cell1.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        cell2.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
     # save document into folder
     document.save(name + '.docx')

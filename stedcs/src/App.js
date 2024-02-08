@@ -9,7 +9,8 @@ const curr_day = new Date();
 function App() {
   const [response, setResponse] = useState({});
   const [students, setStudents] = useState([{}]);
-  const [studentsToday, setStudentsToday] = useState([{}]);
+  const [documentPrinted, setDocumentPrinted] = useState(false);
+  const [sheetPrinted, setSheetPrinted] = useState(false);
   const BASE_URL = 'http://localhost:8000/';
   // fetch the student from the backend
   const findStudent = async (student) => {
@@ -18,16 +19,18 @@ function App() {
     setResponse(data);
     console.log(response);
   }
-  
-  const sampleSize = async() => {
-    const responseFetch = await fetch(BASE_URL + 'sample-size');
-    const data = await responseFetch.json();
-    console.log(data['message']);
-  }
 
   const saveDocument = async () => {
     const responseFetch = await fetch(BASE_URL + 'save-document');
     const data = await responseFetch.json();
+    setDocumentPrinted(true);
+    console.log(data['message']);
+  }
+
+  const saveData = async () => {
+    const responseFetch = await fetch(BASE_URL + 'save-data');
+    const data = await responseFetch.json();
+    setSheetPrinted(true);
     console.log(data['message']);
   }
 
@@ -37,10 +40,22 @@ function App() {
     setStudents(data);
   }   
 
+  const signOutStudent = async (student) => {
+    console.log('signing out student');
+    const responseFetch = await fetch(BASE_URL + 'sign-out/' + student);
+    const data = await responseFetch.json();
+    if(data['message'] === 'Student has not signed in yet') {
+      findStudent(student);
+    }
+    console.log(data);
+    setResponse(data);
+  }
+
   useEffect(() => {getStudents()}, []);
 
   const handleOnSearch = (string, results) => {
-    findStudent(string);
+    console.log(documentPrinted);
+    documentPrinted ? signOutStudent(string) : findStudent(string);
   };
 
   return (
@@ -52,11 +67,12 @@ function App() {
         {/* display the current date */}
         {curr_day.toDateString()}
 
-        <button
-          onClick={() => sampleSize()}> test </button>
         {/* input for the student ID */}
           <div className='search'>
-          <p>Please enter the student's name.</p>
+          {documentPrinted ? 
+          <p>Enter the student's name to sign out.</p> 
+          : 
+          <p>Enter the student's name to sign in.</p>}
           <ReactSearchAutocomplete
             items={students}
             onSearch={handleOnSearch}
@@ -81,10 +97,21 @@ function App() {
 
         <Student message={response} />
         <div className='Document'>
+          <p>Click the button to save the sign in document.</p> 
           <button
-          onClick={() => saveDocument()}>
+          onClick={saveDocument}>
             Save Document
           </button>
+          {documentPrinted ?
+          <p>Document has been printed!</p> : ''}
+          <br></br>
+          <p>Click the button to save the data into a spreadsheet.</p>
+          <button
+          onClick={saveData}>
+            Save Data
+          </button>
+          {sheetPrinted ?
+          <p>Data has been saved!</p> : ''}
         </div>
       </header>
     </div>
