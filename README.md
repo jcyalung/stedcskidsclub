@@ -41,7 +41,7 @@ that helps with typing in student names.
 
 Now, we can start running the backend. <br>
 1. If this is your first time running the program, folders for storing the sign in sheets and the data logs are not created yet.
-<br> In this case, we need to run the file `args.py`. Navigate to the directory that the python files are stored in. (~/api)
+<br> In this case, we need to run the file `args.py`. Navigate to the directory that the python files are stored in. (`~/api`)
 <br> Create the folders for Logs and Sign-in Sheets using the command `python folders.py`.
 This will generate a folder named `Logs` and `signInSheets`, and these folders also have a folder for each school month. (Ex. Jan-June, August-December)
 3. Now, run the command `python server.py`.
