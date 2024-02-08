@@ -1,8 +1,7 @@
 # Kids Club Sign-in/Sign-out 
 This program aims to create a sign-out sheet for students who check in to Kids Club for the day.<br> 
-The program will use `python-docx` to generate word documents <br>
-to fetch a list of students who checked in to extended care. <br>
-
+The program will use `python-docx` to generate word documents to fetch a list of students who checked in to extended care. <br>
+It also uses `uvicorn` and `FastAPI` for backend functionality and data handling.
 # Python set up
 For this program, we will be utilizing a third-party Python library called [python-docx](https://python-docx.readthedocs.io/en/latest/). <br>
 This library allows us to generate Microsoft Word documents from python scripts, which is the goal for this program.
@@ -14,4 +13,16 @@ This library allows us to generate Microsoft Word documents from python scripts,
 If you do not have pip, install or upgrade [python](https://www.python.org/downloads/) to the latest version.
 
 # React.JS set up
-This program also features
+This program also features a frontend aspect using React.JS. We also utilize a React library called `<ReactSearchAutoComplete>` <br>
+that helps with typing in student names.
+
+- To run this with React.JS, we will need to first install [Node.JS](https://nodejs.org/en/download).
+
+1. Once set up, navigate to the directory that the program is stored in.
+2. Then, navigate to the `stedcs` folder. This is where the frontend is stored.
+3. If `package-lock.json` is in the `stedcs` folder, delete it.
+4. Once deleted, navigate to the `stedcs` folder in the terminal/command prompt. This is usually done using the command `cd`.
+5. Once in the `stedcs` folder, run the command `npm install react-scripts`.
+6. Test to see if the frontend is working with `npm start`. <br> Your screen should open a web browser window that looks like this: <br>
+
+   
