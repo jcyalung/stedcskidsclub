@@ -18,11 +18,22 @@ that helps with typing in student names.
 
 - To run this with React.JS, we will need to first install [Node.JS](https://nodejs.org/en/download).
 
-1. Once set up, navigate to the directory that the program is stored in.
+
+# Program set up
+1. Once both python and React.JS have been set up, navigate to the directory that the program is stored in.
 2. Then, navigate to the `stedcs` folder. This is where the frontend is stored.
 3. If `package-lock.json` is in the `stedcs` folder, delete it.
 4. Once deleted, navigate to the `stedcs` folder in the terminal/command prompt. This is usually done using the command `cd`.
 5. Once in the `stedcs` folder, run the command `npm install react-scripts`.
-6. Test to see if the frontend is working with `npm start`. <br> Your screen should open a web browser window that looks like this: <br>
-![Alt text](image.png)
+6. Test to see if the frontend is working with `npm start`. <br> **Your screen should open a web browser window that looks like this:** <br>
+![Alt text](image.png) <br>
+
+Now, we can start running the backend. <br>
+1. If this is your first time running the program, folders for storing the sign in sheets and the data logs are not created yet.
+<br> In this case, we need to run the file `args.py`. Navigate to the directory that the python files are stored in. (~/api)
+<br> Create the folders for Logs and Sign-in Sheets using the command `python folders.py`.
+This will generate a folder named `Logs` and `signInSheets`, and these folders also have a folder for each school month. (Ex. Jan-June, August-December)
+3. Now, run the command `python server.py`.
+4. 
+
    
