@@ -23,4 +23,6 @@ that helps with typing in student names.
 3. If `package-lock.json` is in the `stedcs` folder, delete it.
 4. Once deleted, navigate to the `stedcs` folder in the terminal/command prompt. This is usually done using the command `cd`.
 5. Once in the `stedcs` folder, run the command `npm install react-scripts`.
-6. Test to see if the frontend is working with `npm start`.
+6. Test to see if the frontend is working with `npm start`. <br> Your screen should open a web browser window that looks like this: <br>
+
+   
