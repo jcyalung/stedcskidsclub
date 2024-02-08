@@ -19,10 +19,11 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*'],
 )
-
 students = kidsclub.get_students()
+current_date = dt.date.today()
 today = dt.date.today().strftime("%B")[0:3] + dt.date.today().strftime("%d") + "students"
 students_today = []
+LOGS_PATH = "/Users/jcyalung/stedcskidsclub/Logs/"
 
 # test to see if the server is running
 @app.get("/")
@@ -103,7 +104,7 @@ def test():
 @app.get("/save-data")
 def data_document():
     file_name = dt.date.today().strftime("%B")[0:3] + dt.date.today().strftime("%d") + "log"
-    with open(file_name + ".csv", "w") as file:
+    with open(LOGS_PATH + current_date.strftime("%B") + "/" + file_name + ".csv", "w") as file:
         out = csv.writer(file)
         out.writerow(["Last Name", "First Name", "Time In", "Time Out"])
         for student in students_today:

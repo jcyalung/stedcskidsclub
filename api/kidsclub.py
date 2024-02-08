@@ -17,7 +17,8 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt, Inches
 from datetime import date
 
-
+SHEET_PATH = "/Users/jcyalung/stedcskidsclub/signInSheets/"
+current_date = date.today()
 def get_students():
     students = []
     with open('students.csv', mode = 'r') as csv_file:
@@ -31,9 +32,8 @@ def get_students():
 def save_document(name : str, students: list):
     print(students)
     # gathering today's date for sign out
-    current_date = date.today()
+    
     date_string = current_date.strftime("%A, %B %d, %Y")
-
     # generate document
     document = Document()
 
@@ -118,7 +118,7 @@ def save_document(name : str, students: list):
         cell2.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
     # save document into folder
-    document.save(name + '.docx')
+    document.save(SHEET_PATH + current_date.strftime("%B") + "/" + name + ".docx")
 
 
 
