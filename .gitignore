@@ -1,4 +1,22 @@
-# created by virtualenv automatically
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# created by virtualenv
 venv
 *.docx
 Scripts
