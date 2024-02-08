@@ -28,6 +28,15 @@ def current_students():
 def invalid_student():
     return({"message": "Please enter a valid student name"})
 
+@app.get("/get-students")
+def get_students():
+    all_students = []
+    counter = 1
+    for student in students:
+        all_students.append({"id": counter, "name": student[1] + " " + student[0]})
+        counter += 1
+    return all_students
+
 @app.get("/add-student/{current}")
 def student(current: str = ''):
     for kidsclub_student in students_today:
