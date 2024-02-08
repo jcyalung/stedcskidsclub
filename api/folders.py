@@ -1,0 +1,25 @@
+"""
+This file should only be run ONCE, on a computer that will be set up.
+This file is responsible for setting up the necessary
+directories and files for the program to run.
+"""
+import os
+
+CURRENT_DIR = "/users/jcyalung/stedcskidsclub/"
+school_months = ["September", "October", "November", "December", "January", "February", "March", "April", "May", "June"]
+
+def create_logs_folder():
+    os.mkdir(CURRENT_DIR + "Logs")
+    for month in school_months:
+        os.mkdir(CURRENT_DIR + "Logs/" + month)
+    
+    
+def create_sign_in_sheets_folder():
+    os.mkdir(CURRENT_DIR + "signInSheets")
+    for month in school_months:
+        os.mkdir(CURRENT_DIR + "signInSheets/" + month)
+    
+if __name__ == "__main__":
+    create_logs_folder()
+    create_sign_in_sheets_folder()
+    print("Folders created successfully")
