@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import Student from './Student';
 import './App.css';
@@ -8,7 +8,6 @@ const curr_day = new Date();
 
 function App() {
   const [response, setResponse] = useState({});
-  const [studentName, setStudentName] = useState('');
   const [students, setStudents] = useState([{}]);
   const BASE_URL = 'http://localhost:8000/';
   // fetch the student from the backend
@@ -27,38 +26,19 @@ function App() {
     const response_fetch = await fetch(BASE_URL + 'get-students');
     const data = await response_fetch.json();
     setStudents(data);
-    console.log(students);
   }   
-  
+
+  useEffect(() => {getStudents()}, );
+
   const handleOnSearch = (string, results) => {
-   console.log(string, results);
+    find_student(string);
   };
 
-  const handleOnHover = (result) => {
-  //  console.log(result);
-  };
+  const handleOnHover = (result) => {};
+  const handleOnSelect = (item) => {};
+  const handleOnFocus = () => {};
+  const handleOnClear = () => {console.log('Cleared')};
 
-  const handleOnSelect = (item) => {
-    console.log(item);
-  };
-
-  const handleOnFocus = () => {
-    console.log("Focused");
-  };
-
-  const handleOnClear = () => {
-  //  console.log("Cleared");
-  };
-
-  const formatResult = (item) => {
-    console.log(item);
-    return (
-      <div className="result-wrapper">
-        <span className="result-span">id: {item.id}</span>
-        <span className="result-span">name: {item.name}</span>
-      </div>
-    );
-  };
   return (
     <div className="App">
       {/* header for the sign in */}
@@ -68,34 +48,32 @@ function App() {
         {/* display the current date */}
         {curr_day.toDateString()}
 
-
         {/* input for the student ID */}
-        <div className='search'>
-          <input 
-              // values to display
-              placeholder='Enter your Student ID'
-              value={ studentName }
-
-              // update the student ID on number press
-              onChange={(e) => {
-                  setStudentName(e.target.value);
-                }}
-              
-              // when enter key is pressed, check if the student ID is valid
-              // otherwise, save studentName and send to backend
-              onKeyUp={(e) => {
-                if (e.key === 'Enter') {
-                  find_student(studentName);
-                  setStudentName('');
-                }
-              }}
+          <div className='search'>
+          <p>Please enter the student's name.</p>
+          <ReactSearchAutocomplete
+            items={students}
+            onSearch={handleOnSearch}
+            onClear={handleOnClear}
+            styling={{
+              height: "45px",
+              borderRadius: "4px",
+              backgroundColor: "white",
+              boxShadow: "none",
+              hoverBackgroundColor: "lightgray",
+              color: "black",
+              fontSize: "18px",
+              fontFamily: "Times New Roman",
+              iconColor: "black",
+              lineColor: "blue",
+              placeholderColor: "darkgreen",
+              clearIconMargin: "3px 8px 0 0",
+              zIndex: 2,
+              }} // To display it on top of the search box below
+            autoFocus
           />
-          {/* }
-          <button
-          onClick={() => find_student(studentName)}>
-          Send
-          </button> */}
-        </div>
+          </div>
+
         <Student message={response} />
         <div className='Document'>
           <button
@@ -106,16 +84,6 @@ function App() {
           onClick={() => getStudents()}>
             Get Students
           </button>
-          <ReactSearchAutocomplete
-            items={students}
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
-            onClear={handleOnClear}
-            styling={{ zIndex: 4 }} // To display it on top of the search box below
-            autoFocus
-          />
         </div>
         
       </header>
