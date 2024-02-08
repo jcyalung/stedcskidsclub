@@ -2,6 +2,10 @@
 This program aims to create a sign-out sheet for students who check in to Kids Club for the day.<br> 
 The program will use `python-docx` to generate word documents to fetch a list of students who checked in to extended care. <br>
 It also uses `uvicorn` and `FastAPI` for backend functionality and data handling.
+# Important notes
+- The students database is imported in a CSV format. Please name this file as `students.csv` and store the file in the `~/api` folder where the python files are stored.
+An example of the database is shown below.
+![Alt text](image3.png)
 # Python set up
 For this program, we will be utilizing a third-party Python library called [python-docx](https://python-docx.readthedocs.io/en/latest/). <br>
 This library allows us to generate Microsoft Word documents from python scripts, which is the goal for this program.
@@ -34,6 +38,7 @@ Now, we can start running the backend. <br>
 <br> Create the folders for Logs and Sign-in Sheets using the command `python folders.py`.
 This will generate a folder named `Logs` and `signInSheets`, and these folders also have a folder for each school month. (Ex. Jan-June, August-December)
 3. Now, run the command `python server.py`.
-4. 
+4. If ran correctly, this should appear in the terminal/command prompt:
+![Alt text](image2.png)
 
    
