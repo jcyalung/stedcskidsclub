@@ -30,10 +30,13 @@ def get_students():
     with open('students.csv', mode = 'r') as csv_file:
         students_file = csv.reader(csv_file)
         for student in students_file:
+            if(student[0] == 'Last Name'):
+                continue
             students.append([student[0], student[1], student[2]])
     return students
 
 def save_document(name : str, students: list):
+    print(students)
     # gathering today's date for sign out
     current_date = date.today()
     date_string = current_date.strftime("%A, %B %d, %Y")
@@ -45,7 +48,10 @@ def save_document(name : str, students: list):
     paragraph = document.add_paragraph()
     paragraph_format = paragraph.paragraph_format
     paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    run = paragraph.add_run("Saint Edward School Kids Club\nSign-Out Sheet\n" + date_string)
+    run = paragraph.add_run("Saint Edward School Kids Club"
+                            "\nSign-Out Sheet"
+                            "\n" + date_string +
+                            "\n # of Kids: " + str(len(students)))
     run.bold = True
 
     # font variable
@@ -73,6 +79,9 @@ def save_document(name : str, students: list):
     # variable for time character
     time_character = ':'
 
+    # padding check
+    num_entries = 2
+    # iterate through the list of students and insert them into the table
     for student in students:
         temp = [student[0] + ", " + student[1]]
         # insert a row into the table and format the table
@@ -91,6 +100,12 @@ def save_document(name : str, students: list):
         # align cells to center format
         cell1.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
         cell2.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        num_entries += 1
+        if num_entries == 15:
+            # add padding 
+            num_entries = 0
+            temp_row = table.add_row()
+
 
     # save document into folder
     document.save(name + '.docx')

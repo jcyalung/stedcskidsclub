@@ -19,6 +19,10 @@ students = kidsclub.get_students()
 today = dt.date.today().strftime("%B")[0:3] + dt.date.today().strftime("%d") + "students"
 students_today = []
 
+@app.get("/")
+def root():
+    return({ "message": "hello world" })
+
 @app.get("/current-students")
 def current_students():
     students_today.sort(key=lambda student: student[0])
@@ -41,7 +45,7 @@ def get_students():
 def student(current: str = ''):
     for kidsclub_student in students_today:
         if current == kidsclub_student[1] + " " + kidsclub_student[0]:
-            return({"message": "Student is already checked in"})
+            return({"message": "Student is already checked in", "name": current, "time in": kidsclub_student[2]})
         
     for current_student in students:
         curr = current_student[1] + " " + current_student[0]
@@ -51,10 +55,6 @@ def student(current: str = ''):
             return({"message": "Student found", "name":curr, "time in":ct.strftime("%I:%M %p")})
             
     return({"message": "Student not found"})
-
-@app.get("/")
-def root():
-    return({ "message": "hello world" })
 
 @app.get("/random-digit/{num}")
 def random_digit(num: int):

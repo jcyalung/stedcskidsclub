@@ -9,35 +9,39 @@ const curr_day = new Date();
 function App() {
   const [response, setResponse] = useState({});
   const [students, setStudents] = useState([{}]);
+  const [studentsToday, setStudentsToday] = useState([{}]);
   const BASE_URL = 'http://localhost:8000/';
   // fetch the student from the backend
-  const find_student = async (student) => {
-    const response_fetch = await fetch(BASE_URL + 'add-student/' + student);
-    const data = await response_fetch.json();
+  const findStudent = async (student) => {
+    const responseFetch = await fetch(BASE_URL + 'add-student/' + student);
+    const data = await responseFetch.json();
     setResponse(data);
     console.log(response);
   }
-  const saveDocument = async () => {
-    const response_fetch = await fetch(BASE_URL + 'save-document');
-    const data = await response_fetch.json();
+  
+  const sampleSize = async() => {
+    const responseFetch = await fetch(BASE_URL + 'sample-size');
+    const data = await responseFetch.json();
     console.log(data['message']);
   }
+
+  const saveDocument = async () => {
+    const responseFetch = await fetch(BASE_URL + 'save-document');
+    const data = await responseFetch.json();
+    console.log(data['message']);
+  }
+
   const getStudents = async () => {
-    const response_fetch = await fetch(BASE_URL + 'get-students');
-    const data = await response_fetch.json();
+    const responseFetch = await fetch(BASE_URL + 'get-students');
+    const data = await responseFetch.json();
     setStudents(data);
   }   
 
-  useEffect(() => {getStudents()}, );
+  useEffect(() => {getStudents()}, []);
 
   const handleOnSearch = (string, results) => {
-    find_student(string);
+    findStudent(string);
   };
-
-  const handleOnHover = (result) => {};
-  const handleOnSelect = (item) => {};
-  const handleOnFocus = () => {};
-  const handleOnClear = () => {console.log('Cleared')};
 
   return (
     <div className="App">
@@ -48,13 +52,14 @@ function App() {
         {/* display the current date */}
         {curr_day.toDateString()}
 
+        <button
+          onClick={() => sampleSize()}> test </button>
         {/* input for the student ID */}
           <div className='search'>
           <p>Please enter the student's name.</p>
           <ReactSearchAutocomplete
             items={students}
             onSearch={handleOnSearch}
-            onClear={handleOnClear}
             styling={{
               height: "45px",
               borderRadius: "4px",
@@ -80,12 +85,7 @@ function App() {
           onClick={() => saveDocument()}>
             Save Document
           </button>
-          <button
-          onClick={() => getStudents()}>
-            Get Students
-          </button>
         </div>
-        
       </header>
     </div>
   );

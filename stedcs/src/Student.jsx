@@ -1,17 +1,15 @@
 import React from 'react';
 const Student = ({message}) => {
-    if(message['message'] === 'Student not found') {
-        return (
-            <div className="notFound">
-                <p>Student not found</p>
-            </div>
-        )
+    if(message['message'] === 'Student is already checked in') {
+        return(<div className="Student">
+            <p>{message['name'] + ' has already checked in.'}</p>
+        </div>)
     }
     return (
         <div className="Student">
-            <p>{[message['message'] === 'Student found' ? 
-                    'Welcome, ' + message['name'] + '!' : 
-                    'Student has already signed in.']}</p>
+            {message['message'] === 'Student found' ? 
+                    <p>{'Welcome, ' + message['name'] + '!' }</p> : 
+                    ''}
         </div>
     )
 }
