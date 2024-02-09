@@ -56,5 +56,5 @@ This will generate a folder named `Logs` and `signInSheets`, and these folders a
 # Navigation
 - To check in a child, start typing in their name and the search bar should autocomplete. If no student shows up, it is likely that the student is not in database.
 Typing in a student who exists in the database should show up like this:
-![Alt text](image4.png)
+![Alt text](images/image4.png)
 Click on the name of the student you would like to check in
