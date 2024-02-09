@@ -45,11 +45,16 @@ that helps with typing in student names.
 
 Now, we can start running the backend. <br>
 1. If this is your first time running the program, folders for storing the sign in sheets and the data logs are not created yet.
-<br> In this case, we need to run the file `args.py`. Navigate to the directory that the python files are stored in. (`~/api`)
+<br> In this case, we need to run the file `folders.py`. Navigate to the directory that the python files are stored in. (`~/api`)
 <br> Create the folders for Logs and Sign-in Sheets using the command `python folders.py`.
 This will generate a folder named `Logs` and `signInSheets`, and these folders also have a folder for each school month. (Ex. Jan-June, August-December)
-3. Now, run the command `python server.py`.
-4. If ran correctly, this should appear in the terminal/command prompt:
+2. Now, run the command `python server.py`.
+3. If ran correctly, this should appear in the terminal/command prompt:
 ![Alt text](image2.png)
+<br> Now that both the frontend and the backend are functioning, we can start using the program.
 
-   
+# Navigation
+- To check in a child, start typing in their name and the search bar should autocomplete. If no student shows up, it is likely that the student is not in database.
+Typing in a student who exists in the database should show up like this:
+![Alt text](images/image4.png)
+Click on the name of the student you would like to check in
