@@ -2,7 +2,11 @@
 This program aims to create a sign-out sheet for students who check in to Kids Club for the day.<br> 
 The program will use `python-docx` to generate word documents to fetch a list of students who checked in to extended care. <br>
 It also uses `uvicorn` and `FastAPI` for backend functionality and data handling.
-
+# Table of contents
+[Important notes](#important-notes)
+[Python set up](#python-setup)
+[React.JS setup](#react.js-setup)
+[Program setup](#program-setup)
 # Important notes
 - The students database is imported in a CSV format. Please name this file as `students.csv` and store the file in the `~/api` folder where the python files are stored.
 An example of the database is shown below.
@@ -13,7 +17,7 @@ An example of the database is shown below.
 - If `Logs` and `signInSheets` are not created in the directory, see below on how to create them.
 
 
-# Python set up
+# Python setup
 For this program, we will be utilizing a third-party Python library called [python-docx](https://python-docx.readthedocs.io/en/latest/). <br>
 This library allows us to generate Microsoft Word documents from python scripts, which is the goal for this program.
 
@@ -23,14 +27,14 @@ This library allows us to generate Microsoft Word documents from python scripts,
 
 If you do not have pip, install or upgrade [python](https://www.python.org/downloads/) to the latest version.
 
-# React.JS set up
+# React.JS setup
 This program also features a frontend aspect using React.JS. We also utilize a React library called `<ReactSearchAutoComplete>` <br>
 that helps with typing in student names.
 
 - To run this with React.JS, we will need to first install [Node.JS](https://nodejs.org/en/download).
 
 
-# Program set up
+# Program setup
 1. Once both python and React.JS have been set up, navigate to the directory that the program is stored in.
 2. Then, navigate to the `stedcs` folder. This is where the frontend is stored.
 3. If `package-lock.json` is in the `stedcs` folder, delete it.
