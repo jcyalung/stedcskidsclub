@@ -55,11 +55,20 @@ This will generate a folder named `Logs` and `signInSheets`, and these folders a
 <br> Now that both the frontend and the backend are functioning, we can start using the program.
 
 # Navigation
-- To check in a child, start typing in their name and the search bar should autocomplete. If no student shows up, it is likely that the student is not in database.
+- To sign in a student, start typing in their name and the search bar should autocomplete. If no student shows up, it is likely that the student is not in database.
 Typing in a student who exists in the database should show up like this:<br>
 ![Alt text](images/image4.png)
-<br>Click on the name of the student you would like to check in, then press enter. A message should appear welcoming the student. <br>
+<br><br> **Click on the name of the student you would like to check in, then press enter. A message should appear welcoming the student.** <br>
 ![Alt text](images/image5.png)
 <br> Trying to sign in the student again will prompt a message saying the student has already checked in.
 - Continue this process until all students are signed in for the day. At Kids Club, all students are usually signed in before 3:30.
-- Once all sstudents are signed in, press the `Save Document` button to generate a sign-in sheet for that day. The file is stored under `/Logs/[month]` with the name `mmmddstudents.docx`. Example: `Feb08students.docx`
+- Once all students are signed in, press the `Save Document` button to generate a sign-in sheet for that day. The file is stored under `/Logs/[month]` with the name `mmmddstudents.docx`, Ex. `Feb08students.docx`. You can now print the sign-out document that contains all the students' names who've signed in.
+- A message should appear above the `Save Document` button saying the document has been saved, and the message above the search bar should have changed to sign out.
+<br> ![Alt text](images/image6.png) <br><br>
+- Now students can be signed out. Any students who come in after 3:30 can still be signed in at this time. To sign out a student, repeat the same process as signing in the student.
+- A message should appear saying the student has sucessfully signed out.
+- A message also appears if you try to sign out the student again. ***NOTE: If trying to sign in or sign out the same student, the earliest time the student has signed in/signed out will be recorded.***
+- At the end of the day once all students are signed out, save the data into a CSV file using the save data button. A message will appear above the button saying that data has been successfully saved.
+Examples of formatting for the sign-in sheet and data file are shown below.
+![Alt text](images/docx.png)
+![Alt text](images/csv.png)
