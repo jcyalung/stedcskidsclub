@@ -69,6 +69,6 @@ Typing in a student who exists in the database should show up like this:<br>
 - A message should appear saying the student has sucessfully signed out.
 - A message also appears if you try to sign out the student again. ***NOTE: If trying to sign in or sign out the same student, the earliest time the student has signed in/signed out will be recorded.***
 - At the end of the day once all students are signed out, save the data into a CSV file using the save data button. A message will appear above the button saying that data has been successfully saved.
-Examples of formatting for the sign-in sheet and data file are shown below.
+Examples of formatting for the sign-in sheet and data file are shown below.<br>
 ![Alt text](images/docx.png)
 ![Alt text](images/csv.png)
