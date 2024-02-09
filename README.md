@@ -3,10 +3,10 @@ This program aims to create a sign-out sheet for students who check in to Kids C
 The program will use `python-docx` to generate word documents to fetch a list of students who checked in to extended care. <br>
 It also uses `uvicorn` and `FastAPI` for backend functionality and data handling.
 # Table of contents
-[Important notes](#important-notes)
-[Python set up](#python-setup)
-[React.JS setup](#react.js-setup)
-[Program setup](#program-setup)
+- [Important notes](#important-notes)
+- [Python set up](#python-setup)
+- [React setup](#react-setup)
+- [Program setup](#program-setup)
 # Important notes
 - The students database is imported in a CSV format. Please name this file as `students.csv` and store the file in the `~/api` folder where the python files are stored.
 An example of the database is shown below.
@@ -27,7 +27,7 @@ This library allows us to generate Microsoft Word documents from python scripts,
 
 If you do not have pip, install or upgrade [python](https://www.python.org/downloads/) to the latest version.
 
-# React.JS setup
+# React setup
 This program also features a frontend aspect using React.JS. We also utilize a React library called `<ReactSearchAutoComplete>` <br>
 that helps with typing in student names.
 
