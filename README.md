@@ -65,7 +65,7 @@ Typing in a student who exists in the database should show up like this:<br>
 - Once all students are signed in, press the `Save Document` button to generate a sign-in sheet for that day. The file is stored under `/Logs/[month]` with the name `mmmddstudents.docx`, Ex. `Feb08students.docx`. You can now print the sign-out document that contains all the students' names who've signed in.
 - A message should appear above the `Save Document` button saying the document has been saved, and the message above the search bar should have changed to sign out.
 <br> ![Alt text](images/image6.png) <br><br>
-- Now students can be signed out. Any students who come in after 3:30 can still be signed in at this time. To sign out a student, repeat the same process as signing in the student.
+- Now, students can be signed out. Any students who come in after 3:30 can still be signed in at this time. To sign out a student, repeat the same process as signing in the student.
 - A message should appear saying the student has sucessfully signed out.
 - A message also appears if you try to sign out the student again. ***NOTE: If trying to sign in or sign out the same student, the earliest time the student has signed in/signed out will be recorded.***
 - At the end of the day once all students are signed out, save the data into a CSV file using the save data button. A message will appear above the button saying that data has been successfully saved.
