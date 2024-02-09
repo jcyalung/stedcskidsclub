@@ -42,7 +42,7 @@ that helps with typing in student names.
 4. Once deleted, navigate to the `stedcs` folder in the terminal/command prompt. This is usually done using the command `cd`.
 5. Once in the `stedcs` folder, run the command `npm install react-scripts`.
 6. Test to see if the frontend is working with `npm start`. <br> **Your screen should open a web browser window that looks like this:** <br>
-![Alt text](image.png) <br>
+![Alt text](images/image.png) <br>
 
 Now, we can start running the backend. <br>
 1. If this is your first time running the program, folders for storing the sign in sheets and the data logs are not created yet.
@@ -51,7 +51,7 @@ Now, we can start running the backend. <br>
 This will generate a folder named `Logs` and `signInSheets`, and these folders also have a folder for each school month. (Ex. Jan-June, August-December)
 2. Now, run the command `python server.py`.
 3. If ran correctly, this should appear in the terminal/command prompt:
-![Alt text](image2.png)
+![Alt text](images/image2.png)
 <br> Now that both the frontend and the backend are functioning, we can start using the program.
 
 # Navigation
