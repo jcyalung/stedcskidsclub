@@ -4,9 +4,8 @@
 This program generates a sign-out document for
  students who signed in for the day at Kids Club.
  We aim for this program to operate with other software/databases that
- Saint Edward uses at its disposal, such as Procare.
- 
-
+ Saint Edward Catholic School uses at its disposal, such as Procare.
+    This program is a part of the Kids Club Check-in System.
 
 """
 import docx
