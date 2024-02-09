@@ -18,6 +18,7 @@ function App() {
     const responseFetch = await fetch(BASE_URL + 'add-student/' + student);
     const data = await responseFetch.json();
     setMessage(data);
+    console.log(message);
   }
 
   const saveDocument = async () => {
@@ -104,7 +105,7 @@ function App() {
             } </p> 
           <button
           onClick={saveDocument}
-          class='button-primary'>
+          className='button-primary'>
             Save Document
           </button>
           <br></br>
@@ -115,7 +116,7 @@ function App() {
           }</p>
           <button
           onClick={saveData}
-          class='button-primary'>
+          className='button-primary'>
             Save Data
           </button>
         </div>
