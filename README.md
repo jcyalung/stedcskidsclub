@@ -7,6 +7,7 @@ It also uses `uvicorn` and `FastAPI` for backend functionality and data handling
 - [Python set up](#python-setup)
 - [React setup](#react-setup)
 - [Program setup](#program-setup)
+- [Navigation](#navigation)
 # Important notes
 - The students database is imported in a CSV format. Please name this file as `students.csv` and store the file in the `~/api` folder where the python files are stored.
 An example of the database is shown below.
@@ -55,6 +56,10 @@ This will generate a folder named `Logs` and `signInSheets`, and these folders a
 
 # Navigation
 - To check in a child, start typing in their name and the search bar should autocomplete. If no student shows up, it is likely that the student is not in database.
-Typing in a student who exists in the database should show up like this:
+Typing in a student who exists in the database should show up like this:<br>
 ![Alt text](images/image4.png)
-Click on the name of the student you would like to check in
+<br>Click on the name of the student you would like to check in, then press enter. A message should appear welcoming the student. <br>
+![Alt text](images/image5.png)
+<br> Trying to sign in the student again will prompt a message saying the student has already checked in.
+- Continue this process until all students are signed in for the day. At Kids Club, all students are usually signed in before 3:30.
+- Once all sstudents are signed in, press the `Save Document` button to generate a sign-in sheet for that day. The file is stored under `/Logs/[month]` with the name `mmmddstudents.docx`. Example: `Feb08students.docx`
