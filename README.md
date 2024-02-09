@@ -11,7 +11,7 @@ It also uses `uvicorn` and `FastAPI` for backend functionality and data handling
 # Important notes
 - The students database is imported in a CSV format. Please name this file as `students.csv` and store the file in the `~/api` folder where the python files are stored.
 An example of the database is shown below.
-![Alt text](image3.png)
+![Alt text](images/image3.png)
 - A record of each student signed in and signed out is both stored as sign in sheets as well as CSV files.
 - The sign in sheets are stored in the folder `signInSheets` under the appropriate month folder.
 - The CSV logs are stored in the folder `Logs` under the appropriate month folder.
