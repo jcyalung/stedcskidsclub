@@ -29,6 +29,7 @@ current_date = dt.date.today()
 today = dt.date.today().strftime("%B")[0:3] + dt.date.today().strftime("%d") + "students"
 # all students today
 students_today = []
+# path to the logs folder. This is different for each user, so it is important to change this
 LOGS_PATH = "C:/Users/jcyal/Documents/stedcskidsclub/Logs/"
 
 # test to see if the server is running
