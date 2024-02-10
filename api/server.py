@@ -57,7 +57,6 @@ def get_students():
 def invalid_student():
     return({"message": "Please enter a valid student name"})
 
-
 # add student to the list of students who have checked in today
 @app.get("/add-student/{current}")
 def student(current : str = ''):
