@@ -7,11 +7,18 @@ const today = new Date();
 
 
 function App() {
+  // JSON messages from backend
   const [message, setMessage] = useState({});
+  // list of all students in database
   const [students, setStudents] = useState([{}]);
+  // check to see if document was printed
   const [documentPrinted, setDocumentPrinted] = useState(false);
+  // check to see if data sheet was printed
   const [sheetPrinted, setSheetPrinted] = useState(false);
+  // number of students currently in kids club
   const [numStudents, setNumStudents] = useState(0);
+
+  // url for communicating with backend
   const BASE_URL = 'http://localhost:8000/';
 
   // fetch the student from the backend
@@ -20,57 +27,65 @@ function App() {
     const data = await responseFetch.json();
     setMessage(data);
     console.log(data);
+    // if student is signing in for the first time, increase count
     if(data['message'] === 'Student signed in') { setNumStudents(numStudents + 1); }
   }
 
+  // generates the sign in document
   const saveDocument = async () => {
     const responseFetch = await fetch(BASE_URL + 'save-document');
     const data = await responseFetch.json();
+    // set document printed state to true
     setDocumentPrinted(true);
     console.log(data['message']);
   }
 
+  // saves data into a spreadsheet 
   const saveData = async () => {
     const responseFetch = await fetch(BASE_URL + 'save-data');
     const data = await responseFetch.json();
+    // set sheet printed state to true
     setSheetPrinted(true);
     console.log(data['message']);
   }
 
+  // gets all students from database
   const getStudents = async () => {
     const responseFetch = await fetch(BASE_URL + 'get-students');
     const data = await responseFetch.json();
     setStudents(data);
   }   
 
+  // signs out a student given a name
   const signOutStudent = async (student) => {
     console.log('signing out student');
     const responseFetch = await fetch(BASE_URL + 'sign-out/' + student);
     const data = await responseFetch.json();
+    // if student hasn't signed in yet, sign them in
+    // ex. students who come in after 3:30
     if(data['message'] === 'Student has not signed in yet') {
       signInStudent(student);
     }
+    // otherwise, decrease count
     else { setNumStudents(numStudents - 1); }
-    console.log(data);
+    // store response
     setMessage(data);
   }
 
   // removes a student from the current number of students
   // commonly used to undo the last action
   const removeStudent = async () => {
-    if(!documentPrinted) {
-      const responseFetch = await fetch(BASE_URL + 'remove-student');
-      const data = await responseFetch.json();
-      setMessage(data);
-      console.log(data);
-      if(message['message'] === 'Removed student') { setNumStudents(numStudents - 1); }
-    }
+    const responseFetch = await fetch(BASE_URL + 'remove-student');
+    const data = await responseFetch.json();
+    setMessage(data);
+    console.log(data);
+    if(message['message'] === 'Removed student') { setNumStudents(numStudents - 1); }
   }
 
   // fetch all students from the backend
   useEffect(() => {getStudents()}, []);
 
-  // when user presses enter on search bar, sign in the student/sign out the student
+  // when user presses enter on search bar, sign in/sign out the student
   const handleOnSelect = (student) => {
     documentPrinted ? signOutStudent(student['name']) : signInStudent(student['name']);
   };
@@ -115,7 +130,11 @@ function App() {
           className='button-primary'>
           Undo</button>
           </div>
+        
+        {/* display message */}
         <Student message={message} />
+
+        {/* document buttons */}
         <div className='Document'>
           <p>{ 
             documentPrinted ? 

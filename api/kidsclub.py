@@ -4,8 +4,7 @@
  students who signed in for the day at Kids Club.
  We aim for this program to operate with other software/databases that
  Saint Edward Catholic School uses at its disposal, such as Procare.
-    This program is a part of the Kids Club Check-in System.
-
+ This program is a part of the Kids Club Check-in System.
 """
 import csv
 from docx import Document
@@ -16,21 +15,25 @@ from datetime import date
 SHEET_PATH = "C:/Users/jcyal/Documents/stedcskidsclub/signInSheets/"
 current_date = date.today()
 
-def get_students():
+# returns a list of all students in the current database
+def get_students() -> list:
     students = []
+    # opens the csv, parses it, and returns a list of all students
     with open('students.csv', mode = 'r') as csv_file:
         students_file = csv.reader(csv_file)
         for student in students_file:
+            # throwaway header line
             if(student[0] == 'Last Name'):
                 continue
             students.append([student[0], student[1], student[2]])
     return students
 
+# generates a sign in sheet with all students who've signed in for the day
 def save_document(name : str, students: list):
-    print(students)
+
     # gathering today's date for sign out
-    
     date_string = current_date.strftime("%A, %B %d, %Y")
+
     # generate document
     document = Document()
 

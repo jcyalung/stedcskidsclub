@@ -11,6 +11,7 @@ import uvicorn
 import random
 import datetime as dt
 
+# backend 
 app = FastAPI()
 origins = ['*']
 app.add_middleware(
@@ -19,9 +20,14 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*'],
 )
+# all students
 students = kidsclub.get_students()
+# today's date
 current_date = dt.date.today()
+
+# sign-in sheet filename
 today = dt.date.today().strftime("%B")[0:3] + dt.date.today().strftime("%d") + "students"
+# all students today
 students_today = []
 LOGS_PATH = "C:/Users/jcyal/Documents/stedcskidsclub/Logs/"
 
@@ -55,10 +61,12 @@ def invalid_student():
 # add student to the list of students who have checked in today
 @app.get("/add-student/{current}")
 def student(current : str = ''):
+    # first check if the student has already checked in
     for kidsclub_student in students_today:
         if current == kidsclub_student[1] + " " + kidsclub_student[0]:
             return({"message": "Student has already signed in", "name": current, "time in": kidsclub_student[2], "time out": ""})
-        
+    
+    # if not, check if student exists in database then add them to the list
     for current_student in students:
         curr = current_student[1] + " " + current_student[0]
         if curr == current:
@@ -68,15 +76,20 @@ def student(current : str = ''):
     
     return({"message": "Student not found"})
 
+# signs out a student 
 @app.get("/sign-out/{student}")
 def sign_out(student : str):
+    # search through all students
     for kidsclub_student in students_today:
         if student == kidsclub_student[1] + " " + kidsclub_student[0]:
+            # if there is already a sign out time, do not overwrite the sign-out time
             if(kidsclub_student[3] != ""):
                 return({"message": "Student has already signed out", "name": student, "time in": kidsclub_student[2], "time out": kidsclub_student[3]})
             else:
+                # otherwise, set sign out time
                 kidsclub_student[3] = dt.datetime.now().strftime("%I:%M %p")
                 return({"message": "Student signed out", "name": student, "time in": kidsclub_student[2], "time out": kidsclub_student[3]})
+    
     return({"message": "Student has not signed in yet", "name": student, "time in": "", "time out": ""})
 
 # random digit generator, testing purposes
@@ -93,13 +106,7 @@ def save_document():
     kidsclub.save_document(today, students_today)
     return({"message": "Document saved"})
 
-@app.get('/test')
-def test():
-    for i in range(40):
-        student(students[i][1] + " " + students[i][0])
-        sign_out(students[i][1] + " " + students[i][0])
-    return(students_today)
-
+# generates a spreadsheet for students who've signed in and signed out for the day
 @app.get("/save-data")
 def data_document():
     file_name = dt.date.today().strftime("%B")[0:3] + dt.date.today().strftime("%d") + "log"
@@ -112,10 +119,13 @@ def data_document():
     
     return({"message": "Data saved"})
 
+# removes the last signed-in student, used for undo
 @app.get("/remove-student")
 def remove_student():
+    # if there are no students to remove, don't remove anything from the list
     if len(students_today) == 0:
         return({"message": "No students to remove"})
+    # otherwise, pop off the last student and return the student who was removed
     removed_student = students_today.pop()
     return({"message": "Removed student", "name": removed_student[1] + " " + removed_student[0], "time in": removed_student[2], "time out": removed_student[3]})
 
