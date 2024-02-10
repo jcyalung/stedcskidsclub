@@ -8,9 +8,8 @@ This program generates a sign-out document for
     This program is a part of the Kids Club Check-in System.
 
 """
-import docx
+
 import csv
-import json
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt, Inches
