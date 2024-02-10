@@ -16,8 +16,9 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt, Inches
 from datetime import date
 
-SHEET_PATH = "/Users/jcyalung/stedcskidsclub/signInSheets/"
+SHEET_PATH = "C:/Users/jcyal/Documents/stedcskidsclub/signInSheets/"
 current_date = date.today()
+
 def get_students():
     students = []
     with open('students.csv', mode = 'r') as csv_file:
