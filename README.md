@@ -10,7 +10,7 @@ It also uses `uvicorn` and `FastAPI` for backend functionality and data handling
 - [Navigation](#navigation)
 # Important notes
 - The students database is imported in a CSV format. Please name this file as `students.csv` and store the file in the `~/api` folder where the python files are stored.
-An example of the database is shown below.
+An example of the database is shown below. <br>
 ![Alt text](images/image3.png)
 - A record of each student signed in and signed out is both stored as sign in sheets as well as CSV files.
 - The sign in sheets are stored in the folder `signInSheets` under the appropriate month folder.
@@ -33,7 +33,8 @@ This program also features a frontend aspect using React.JS. We also utilize a R
 that helps with typing in student names.
 
 - To run this with React.JS, we will need to first install [Node.JS](https://nodejs.org/en/download).
-
+- Navigate to the `stedcs` folder in the program's directory. In the command prompt, run the command `npm install react-search-autocomplete`.
+- This will allow us to use the autocomplete search bar.
 
 # Program setup
 1. Once both python and React.JS have been set up, navigate to the directory that the program is stored in.
