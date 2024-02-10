@@ -23,7 +23,7 @@ students = kidsclub.get_students()
 current_date = dt.date.today()
 today = dt.date.today().strftime("%B")[0:3] + dt.date.today().strftime("%d") + "students"
 students_today = []
-LOGS_PATH = "/Users/jcyalung/stedcskidsclub/Logs/"
+LOGS_PATH = "C:/Users/jcyal/Documents/stedcskidsclub/Logs/"
 
 # test to see if the server is running
 @app.get("/")
@@ -71,7 +71,6 @@ def student(current : str = ''):
 @app.get("/sign-out/{student}")
 def sign_out(student : str):
     for kidsclub_student in students_today:
-        print(kidsclub_student)
         if student == kidsclub_student[1] + " " + kidsclub_student[0]:
             if(kidsclub_student[3] != ""):
                 return({"message": "Student has already signed out", "name": student, "time in": kidsclub_student[2], "time out": kidsclub_student[3]})

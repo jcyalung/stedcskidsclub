@@ -20,12 +20,7 @@ function App() {
     const data = await responseFetch.json();
     setMessage(data);
     console.log(data);
-    if(message['message'] === 'Student not found' || message['message'] === 'Student is already signed in') { 
-      console.log('Student not found'); 
-    }
-    else {
-      setNumStudents(numStudents + 1); 
-    }
+    if(data['message'] === 'Student signed in') { setNumStudents(numStudents + 1); }
   }
 
   const saveDocument = async () => {
@@ -55,9 +50,7 @@ function App() {
     if(data['message'] === 'Student has not signed in yet') {
       signInStudent(student);
     }
-    else {
-      setNumStudents(numStudents - 1);
-    }
+    else { setNumStudents(numStudents - 1); }
     console.log(data);
     setMessage(data);
   }
@@ -89,7 +82,7 @@ function App() {
         Saint Edward Kids Club Sign In<br/>
         {/* display the current date */}
         {today.toDateString()} <br/>
-        {'Number of students at Kids Club: ' + numStudents}
+        {'Current number of students: ' + numStudents}
         </header>
         {/* input for the student ID */}
           <div className='Search'>
