@@ -11,14 +11,20 @@ function App() {
   const [students, setStudents] = useState([{}]);
   const [documentPrinted, setDocumentPrinted] = useState(false);
   const [sheetPrinted, setSheetPrinted] = useState(false);
+  const [numStudents, setNumStudents] = useState(0);
   const BASE_URL = 'http://localhost:8000/';
 
   // fetch the student from the backend
-  const findStudent = async (student) => {
+  const signInStudent = async (student) => {
     const responseFetch = await fetch(BASE_URL + 'add-student/' + student);
     const data = await responseFetch.json();
     setMessage(data);
-    console.log(message);
+    if(message['message'] === 'Student not found') { 
+      console.log('Student not found'); 
+    }
+    else {
+      setNumStudents(numStudents + 1); 
+    }
   }
 
   const saveDocument = async () => {
@@ -46,36 +52,55 @@ function App() {
     const responseFetch = await fetch(BASE_URL + 'sign-out/' + student);
     const data = await responseFetch.json();
     if(data['message'] === 'Student has not signed in yet') {
-      findStudent(student);
+      signInStudent(student);
+    }
+    else {
+      setNumStudents(numStudents - 1);
     }
     console.log(data);
     setMessage(data);
   }
 
+  // removes a student from the current number of students
+  // commonly used to undo the last action
+  const removeStudent = async () => {
+    if(!documentPrinted) {
+      const responseFetch = await fetch(BASE_URL + 'remove-student');
+      const data = await responseFetch.json();
+      setMessage(data);
+      console.log(data);
+      if(message['message'] === 'Removed student') { setNumStudents(numStudents - 1); }
+    }
+  }
+
+  // fetch all students from the backend
   useEffect(() => {getStudents()}, []);
 
-  const handleOnSearch = (string, results) => {
-    documentPrinted ? signOutStudent(string) : findStudent(string);
+  // when user presses enter on search bar, sign in the student/sign out the student
+  const handleOnSelect = (student) => {
+    documentPrinted ? signOutStudent(student['name']) : signInStudent(student['name']);
   };
 
   return (
     <div className="App">
       {/* header for the sign in */}
       <header className="App-header">
-        Saint Edward Kids Club Sign In<br />
-
+        Saint Edward Kids Club Sign In<br/>
         {/* display the current date */}
-        {today.toDateString()}
-
+        {today.toDateString()} <br/>
+        {'Number of students at Kids Club: ' + numStudents}
+        </header>
         {/* input for the student ID */}
-          <div className='search'>
+          <div className='Search'>
           {documentPrinted ? 
-          <p>Enter the student's name to sign out.</p> 
+          <p>Enter the student's name to sign them out.</p> 
           : 
-          <p>Enter the student's name to sign in.</p>}
+          <p>Enter the student's name to sign them in.</p>}
           <ReactSearchAutocomplete
             items={students}
-            onSearch={handleOnSearch}
+            onSelect={handleOnSelect}
+            maxResults={5}
+            placeholder="Search for a student"
             styling={{
               height: "45px",
               borderRadius: "4px",
@@ -87,21 +112,22 @@ function App() {
               fontFamily: "Times New Roman",
               iconColor: "black",
               lineColor: "blue",
-              placeholderColor: "darkgreen",
+              placeholderColor: "black",
               clearIconMargin: "3px 8px 0 0",
-              zIndex: 2,
-              }} // To display it on top of the search box below
+              zIndex: 4}}
             autoFocus
-          />
+          /><button
+          onClick={removeStudent} 
+          className='button-primary'>
+          Undo</button>
           </div>
-
         <Student message={message} />
         <div className='Document'>
           <p>{ 
             documentPrinted ? 
-            'Document has been saved!'
+            'Document has been generated! Check the signInSheets folder.'
             : 
-            'Click the button to save the sign in document.' 
+            'Click the button to generate the sign in document.' 
             } </p> 
           <button
           onClick={saveDocument}
@@ -110,7 +136,7 @@ function App() {
           </button>
           <br></br>
           <p>{sheetPrinted ? 
-          'Spreadsheet has been saved!'
+          'Spreadsheet has been saved! Check the Logs folder.'
           : 
           'Click the button to save the data into a spreadsheet.' 
           }</p>
@@ -120,7 +146,6 @@ function App() {
             Save Data
           </button>
         </div>
-      </header>
     </div>
   );
 }

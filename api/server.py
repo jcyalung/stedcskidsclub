@@ -63,9 +63,9 @@ def student(current : str = ''):
         curr = current_student[1] + " " + current_student[0]
         if curr == current:
             ct = dt.datetime.now()
-            students_today.append([current_student[0], current_student[1], ct.strftime("%I:%M %p"), ""  ])
-            return({"message": "Student found", "name":curr, "time in":ct.strftime("%I:%M %p"), "time out": ""})
-            
+            students_today.append([current_student[0], current_student[1], ct.strftime("%I:%M %p"), ""])
+            return({"message": "Student signed in", "name":curr, "time in":ct.strftime("%I:%M %p"), "time out": ""})
+    
     return({"message": "Student not found"})
 
 @app.get("/sign-out/{student}")
@@ -112,6 +112,13 @@ def data_document():
     file.close()
     
     return({"message": "Data saved"})
+
+@app.get("/remove-student")
+def remove_student():
+    if len(students_today) == 0:
+        return({"message": "No students to remove"})
+    removed_student = students_today.pop()
+    return({"message": "Removed student", "name": removed_student[1] + " " + removed_student[0], "time in": removed_student[2], "time out": removed_student[3]})
 
 if __name__ == "__main__":
     uvicorn.run("server:app", port=8000, reload=True)

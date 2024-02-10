@@ -1,5 +1,10 @@
 import React from 'react';
 const Student = ({message}) => {
+    if(message['message'] === 'Removed student') {
+        return(<div className="Student">
+            <p>{message['name'] + ' has been removed.'}</p>
+        </div>)
+    }
     if(message['message'] === 'Student signed out') {
         return(<div className="Student">
             <p>{message['name'] + ' has been signed out.'}</p>
@@ -22,7 +27,7 @@ const Student = ({message}) => {
     }
     return (
         <div className="Student">
-            {message['message'] === 'Student found' ? 
+            {message['message'] === 'Student signed in' ? 
                     <p>{'Welcome, ' + message['name'] + '!' }</p> : ''}
         </div>
     )

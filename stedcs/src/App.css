@@ -9,7 +9,18 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 1vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+}
+
+body {
+  background-color: #282c34;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,7 +38,7 @@
 
 }
 
-.search {
+.Search {
   color: #a1a1a1;
 }
 
@@ -62,7 +73,6 @@ input {
 }
 
 .Document {
-
   align-items: left;
   justify-content: left;
   margin: 1rem;
@@ -70,14 +80,10 @@ input {
   border: 1px;
   border-radius: 0.5rem;
   color: #a1a1a1;
-  font-size: 3rem;
+  font-size: 20px;
   font-family: var(--font-raleway);
   font-weight: 500;
 }
-.Document {
-  font-size: 20px;
-}
-
 .Document-saved {
   display: flex;
   flex-direction: column;
@@ -136,3 +142,5 @@ input {
   color: rgba(0, 0, 0, 0.65);
   transform: translateY(0);
 }
+
+
