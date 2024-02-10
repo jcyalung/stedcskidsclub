@@ -57,7 +57,7 @@ def invalid_student():
 def student(current : str = ''):
     for kidsclub_student in students_today:
         if current == kidsclub_student[1] + " " + kidsclub_student[0]:
-            return({"message": "Student is already signed in", "name": current, "time in": kidsclub_student[2], "time out": ""})
+            return({"message": "Student has already signed in", "name": current, "time in": kidsclub_student[2], "time out": ""})
         
     for current_student in students:
         curr = current_student[1] + " " + current_student[0]

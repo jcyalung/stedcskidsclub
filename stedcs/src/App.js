@@ -19,7 +19,8 @@ function App() {
     const responseFetch = await fetch(BASE_URL + 'add-student/' + student);
     const data = await responseFetch.json();
     setMessage(data);
-    if(message['message'] === 'Student not found') { 
+    console.log(data);
+    if(message['message'] === 'Student not found' || message['message'] === 'Student is already signed in') { 
       console.log('Student not found'); 
     }
     else {
