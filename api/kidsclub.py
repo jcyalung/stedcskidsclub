@@ -1,14 +1,12 @@
-
 """
  Program is developed by Joshua Yalung.
-This program generates a sign-out document for
+ This program generates a sign-out document for
  students who signed in for the day at Kids Club.
  We aim for this program to operate with other software/databases that
  Saint Edward Catholic School uses at its disposal, such as Procare.
     This program is a part of the Kids Club Check-in System.
 
 """
-
 import csv
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH
