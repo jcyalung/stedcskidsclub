@@ -7,7 +7,7 @@ import os
 
 # this variable should be the path name to the api folder.
 # ex. ~/stedcskidsclub/api 
-CURRENT_DIR = "/stedcskidsclub/"
+CURRENT_DIR = "Users/jcyalung/stedcskidsclub/"
 school_months = ["September", "October", "November", "December", "January", "February", "March", "April", "May", "June"]
 
 # this will create the Logs folder with all the appropriate months.

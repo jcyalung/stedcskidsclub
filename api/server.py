@@ -30,7 +30,7 @@ today = dt.date.today().strftime("%B")[0:3] + dt.date.today().strftime("%d") + "
 # all students today
 students_today = []
 # path to the logs folder. This is different for each user, so it is important to change this
-LOGS_PATH = "C:/Users/jcyal/Documents/stedcskidsclub/Logs/"
+LOGS_PATH = "/Users/jcyalung/stedcskidsclub/Logs/"
 
 # test to see if the server is running
 @app.get("/")

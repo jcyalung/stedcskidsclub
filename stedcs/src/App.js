@@ -79,7 +79,9 @@ function App() {
     const data = await responseFetch.json();
     setMessage(data);
     console.log(data);
-    if(message['message'] === 'Removed student') { setNumStudents(numStudents - 1); }
+    if(message['message'] !== 'No students to remove') { 
+      setNumStudents(numStudents - 1);
+     }
   }
 
   // fetch all students from the backend
