@@ -33,7 +33,7 @@ This program also features a frontend aspect using React.JS. We also utilize a R
 that helps with typing in student names.
 
 - To run this with React.JS, we will need to first install [Node.JS](https://nodejs.org/en/download).
-- Navigate to the `stedcs` folder in the program's directory. In the command prompt, run the command `npm install react-search-autocomplete`.
+- Navigate to the `stedcs` folder in the program's directory. In the command prompt, run the command <br> `npm install react-search-autocomplete`.
 - This will allow us to use the autocomplete search bar.
 
 # Program setup
