@@ -42,16 +42,21 @@ that helps with typing in student names.
 3. If `package-lock.json` is in the `stedcs` folder, delete it.
 4. Once deleted, navigate to the `stedcs` folder in the terminal/command prompt. This is usually done using the command `cd`.
 5. Once in the `stedcs` folder, run the command `npm install`.
-6. Test to see if the frontend is working with `npm start`. <br> **Your screen should open a web browser window that looks like this:** <br>
-![Alt text](images/image.png) <br>
 
-Now, we can start running the backend. <br>
+
+Now, we can set up the backend. <br>
 1. If this is your first time running the program, folders for storing the sign in sheets and the data logs are not created yet.
 <br> In this case, we need to run the file `folders.py`. Navigate to the directory that the python files are stored in. (`~/api`)
 <br> Create the folders for Logs and Sign-in Sheets using the command `python folders.py`.
 This will generate a folder named `Logs` and `signInSheets`, and these folders also have a folder for each school month. (Ex. Jan-June, August-December)
-2. Now, run the command `python server.py`.
-3. If ran correctly, this should appear in the terminal/command prompt:
+
+## Running the program
+There are two ways to run the program; from the terminal and using the .command script.
+1. To run the command script, double click on the file `start.command`. A terminal prompt should pop-up.
+   - If an error pops up that says you do not have access priveleges, navigate to the `stedcskidsclub` directory from terminal
+and run the command `chmod -x start.command`. Once run, you can successfully execute the file.
+2. First, navigate to the directory of the program in the terminal. Then, navigate to the api folder and run `python server.py`. <br> In a second terminal, navigate to the folder `~stedcs` then run the command `npm start`. 
+   -If ran correctly, this should appear in the terminal/command prompt:
 ![Alt text](images/image2.png)
 <br> Now that both the frontend and the backend are functioning, we can start using the program.
 
@@ -63,6 +68,7 @@ Typing in a student who exists in the database should show up like this:<br>
 ![Alt text](images/image5.png)
 <br> Trying to sign in the student again will prompt a message saying the student has already checked in.
 - Continue this process until all students are signed in for the day. At Kids Club, all students are usually signed in before 3:30.
+- If a student was accidentally signed in, press the undo button to remove them from the list for the day. **The undo button only works before students are signed out.**
 - Once all students are signed in, press the `Save Document` button to generate a sign-in sheet for that day. The file is stored in the folder `/Logs/[month]` with the name `mmmddstudents.docx`, Ex. `Feb08students.docx`. You can now print the sign-out document that contains all the students' names who've signed in.
 - A message should appear above the `Save Document` button saying the document has been saved, and the message above the search bar should have changed to sign out.
 <br> ![Alt text](images/image6.png) <br><br>
