@@ -56,7 +56,7 @@ There are two ways to run the program; from the terminal and using the .command 
    - If an error pops up that says you do not have access priveleges, navigate to the `stedcskidsclub` directory from terminal
 and run the command `chmod -x start.command`. Once run, you can successfully execute the file.
 2. First, navigate to the directory of the program in the terminal. Then, navigate to the api folder and run `python server.py`. <br> In a second terminal, navigate to the folder `~stedcs` then run the command `npm start`. 
-   -If ran correctly, this should appear in the terminal/command prompt:
+   - If ran correctly, this should appear in the terminal/command prompt: <br>
 ![Alt text](images/image2.png)
 <br> Now that both the frontend and the backend are functioning, we can start using the program.
 
