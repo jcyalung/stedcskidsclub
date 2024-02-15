@@ -1,8 +1,5 @@
-QUASAR_PORT=8000
-
-CORE_V4_HOST=sce@${CORE_V4_IP}
-
-
+# # this script is used to run the program.
+# # It takes one argument, either "start" or "stop"
 num_args=$#
 arg=$1
 
@@ -10,7 +7,7 @@ check_valid_arg_amount() {
   if [ "$((num_args))" -ne 1 ];
   then
     echo "Error: expected 1 argument only."
-    echo "usage: ./tunnel.sh [start]/[stop]"
+    echo "usage: ./test.sh [start]/[stop]"
     exit 1
   fi
 }

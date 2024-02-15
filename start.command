@@ -1,2 +1,2 @@
 cd stedcskidsclub
-bash test.sh start
+bash run.sh start
