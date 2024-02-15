@@ -63,7 +63,7 @@ Typing in a student who exists in the database should show up like this:<br>
 ![Alt text](images/image5.png)
 <br> Trying to sign in the student again will prompt a message saying the student has already checked in.
 - Continue this process until all students are signed in for the day. At Kids Club, all students are usually signed in before 3:30.
-- Once all students are signed in, press the `Save Document` button to generate a sign-in sheet for that day. The file is stored under `/Logs/[month]` with the name `mmmddstudents.docx`, Ex. `Feb08students.docx`. You can now print the sign-out document that contains all the students' names who've signed in.
+- Once all students are signed in, press the `Save Document` button to generate a sign-in sheet for that day. The file is stored in the folder `/Logs/[month]` with the name `mmmddstudents.docx`, Ex. `Feb08students.docx`. You can now print the sign-out document that contains all the students' names who've signed in.
 - A message should appear above the `Save Document` button saying the document has been saved, and the message above the search bar should have changed to sign out.
 <br> ![Alt text](images/image6.png) <br><br>
 - Now, students can be signed out. Any students who come in after 3:30 can still be signed in at this time. To sign out a student, repeat the same process as signing in the student.
