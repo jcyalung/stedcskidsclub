@@ -129,5 +129,16 @@ def remove_student():
     removed_student = students_today.pop()
     return({"message": "Removed student", "name": removed_student[1] + " " + removed_student[0], "time in": removed_student[2], "time out": removed_student[3]})
 
+@app.get("/remove-student/{student}")
+def remove_student(student: str):
+    # if there are no students to remove, don't remove anything from the list
+    if len(students_today) == 0:
+        return({"message": "No students to remove"})
+    for kidsclub_student in students_today:
+        if student == kidsclub_student[1] + " " + kidsclub_student[0]:
+            students_today.remove(kidsclub_student)
+            return({"message": "Removed student", "name": student, "time in": kidsclub_student[2], "time out": kidsclub_student[3]})
+    return({"message": "Student not found"})
+
 if __name__ == "__main__":
     uvicorn.run("server:app", port=8000, reload=True)

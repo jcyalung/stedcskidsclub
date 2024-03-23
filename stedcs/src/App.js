@@ -4,7 +4,12 @@ import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import Student from './Student';
 import './App.css';
 const today = new Date();
-
+const options = {
+  weekday: 'long',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+};
 
 function App() {
   // JSON messages from backend
@@ -18,6 +23,8 @@ function App() {
   // number of students currently in kids club
   const [numStudents, setNumStudents] = useState(0);
 
+  const [currentStudents, setCurrentStudents] = useState([]);
+
   // url for communicating with backend
   const BASE_URL = 'http://localhost:8000/';
 
@@ -28,7 +35,11 @@ function App() {
     setMessage(data);
     console.log(data);
     // if student is signing in for the first time, increase count
-    if(data['message'] === 'Student signed in') { setNumStudents(numStudents + 1); }
+    if(data['message'] === 'Student signed in') { 
+      setNumStudents(numStudents + 1);
+      currentStudents.push(student);
+      console.log(currentStudents);
+    }
   }
 
   // generates the sign in document
@@ -74,14 +85,27 @@ function App() {
 
   // removes a student from the current number of students
   // commonly used to undo the last action
-  const removeStudent = async () => {
+  const undoStudent = async () => {
     const responseFetch = await fetch(BASE_URL + 'remove-student');
     const data = await responseFetch.json();
     setMessage(data);
     console.log(data);
-    if(message['message'] === 'Removed student') { setNumStudents(numStudents - 1); }
+    if(message['message'] !== 'No students to remove') {
+      setCurrentStudents(currentStudents.filter((name) => name !== message['name']));
+      setNumStudents(numStudents - 1);
+    }
   }
 
+  const removeStudent = async (student) => {
+    const responseFetch = await fetch(BASE_URL + 'remove-student/' + student);
+    const data = await responseFetch.json();
+    setMessage(data);
+    updateStudents();
+    if(message['message'] !== 'No students to remove') {
+      setCurrentStudents(currentStudents.filter((name) => name !== student));
+    }
+  }
+  
   // fetch all students from the backend
   useEffect(() => {getStudents()}, []);
 
@@ -90,13 +114,43 @@ function App() {
     documentPrinted ? signOutStudent(student['name']) : signInStudent(student['name']);
   };
 
+  const updateStudents = async () => {
+    if(message['message'] !== 'No students to remove') { 
+      setNumStudents(numStudents - 1); 
+    }
+  }
+
+  const StudentList = ({students}) => {
+    return(
+          <div className='student-list'>
+            <h4>Current Students: {numStudents}</h4>
+              <ul>
+                {students.length === 0 ?
+                 null :
+                  currentStudents.map((student, index) => {
+                  return (<li key={index}>
+                        <button 
+                        onClick={
+                          () => {
+                            removeStudent(student);
+                            if(message['message'] === 'No students to remove') {
+                              currentStudents.splice(index, 1);
+                          }}}>
+                          {index + 1}. {student}
+                        </button>
+                    </li>)
+                })}
+              </ul>
+          </div>
+    )
+  }
   return (
     <div className="App">
       {/* header for the sign in */}
       <header className="App-header">
         Saint Edward Kids Club Sign In<br/>
         {/* display the current date */}
-        {today.toDateString()} <br/>
+        {today.toLocaleDateString(undefined, options)} <br/>
         {'Current number of students: ' + numStudents}
         </header>
         {/* input for the student ID */}
@@ -126,7 +180,7 @@ function App() {
               zIndex: 4}}
             autoFocus
           /><button
-          onClick={removeStudent} 
+          onClick={undoStudent} 
           className='button-primary'>
           Undo</button>
           </div>
@@ -135,29 +189,35 @@ function App() {
         <Student message={message} />
 
         {/* document buttons */}
-        <div className='Document'>
-          <p>{ 
-            documentPrinted ? 
-            'Document has been generated! Check the signInSheets folder.'
+        <div className='modifiers'>
+          <div className='Document'>
+            <p>{ 
+              documentPrinted ? 
+              'Document has been generated! Check the signInSheets folder.'
+              : 
+              'Click the button to generate the sign in document.' 
+              } </p> 
+            <button
+            onClick={saveDocument}
+            className='button-primary'>
+              Save Document
+            </button>
+            <br></br>
+            <p>{sheetPrinted ? 
+            'Spreadsheet has been saved! Check the Logs folder.'
             : 
-            'Click the button to generate the sign in document.' 
-            } </p> 
-          <button
-          onClick={saveDocument}
-          className='button-primary'>
-            Save Document
-          </button>
-          <br></br>
-          <p>{sheetPrinted ? 
-          'Spreadsheet has been saved! Check the Logs folder.'
-          : 
-          'Click the button to save the data into a spreadsheet.' 
-          }</p>
-          <button
-          onClick={saveData}
-          className='button-primary'>
-            Save Data
-          </button>
+            'Click the button to save the data into a spreadsheet.' 
+            }</p>
+            <button
+            onClick={saveData}
+            className='button-primary'>
+              Save Data
+            </button>
+            <p>
+              Click on any student in the list to remove them from the sheet.
+            </p>
+          </div>
+          <StudentList students={currentStudents}/>
         </div>
     </div>
   );

@@ -73,6 +73,7 @@ input {
 }
 
 .Document {
+  vertical-align: top;
   align-items: left;
   justify-content: left;
   margin: 1rem;
@@ -83,7 +84,9 @@ input {
   font-size: 20px;
   font-family: var(--font-raleway);
   font-weight: 500;
+  display: inline-block;
 }
+
 .Document-saved {
   display: flex;
   flex-direction: column;
@@ -144,3 +147,45 @@ input {
 }
 
 
+.student-list {
+  display: inline-block;
+}
+
+
+.student-list button {
+  color: #ffffff;
+  background-color: #282c34;
+  border: none;
+}
+
+.student-list button:hover {
+  background-color: #000000;
+  cursor: pointer;
+}
+
+.student-list h4 {
+  font-weight: normal;
+}
+
+.student-list ul {
+  list-style-type: none;
+  padding: 0;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+
+.student-list a {
+  text-decoration: none;
+}
+
+.student-list a:hover {
+  text-decoration: none;
+}
+
+.student-list a:visited {
+  text-decoration: none;
+  color: #ffffff;
+}

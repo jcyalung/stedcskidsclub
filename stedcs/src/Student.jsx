@@ -15,7 +15,7 @@ const Student = ({message}) => {
             <p>{message['name'] + ' has not signed in yet.'}</p>
         </div>)
     }
-    if(message['message'] === 'Student is already signed in') {
+    if(message['message'] === 'Student has already signed in') {
         return(<div className="Student">
             <p>{message['name'] + ' has already signed in.'}</p>
         </div>)
