@@ -12,7 +12,9 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Pt, Inches
 from datetime import date
 
-SHEET_PATH = "C:/Users/jcyal/Documents/stedcskidsclub/signInSheets/"
+# this is the path where the sign in sheets will be saved.
+# the path is different for each user, so it is important to change this
+SHEET_PATH = "/Users/jcyalung/stedcskidsclub/signInSheets/"
 current_date = date.today()
 
 # returns a list of all students in the current database
